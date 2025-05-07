@@ -1,7 +1,11 @@
-/* 
-file: array.c
-Include the functions to interact with array
-*/
+/**
+ * @file array.c
+ * @brief Function definitions for basic array operations.
+ * 
+ * This sources provides definitions for utility functions to manipulate 
+ * arrays, including sorting, reversing, searching, and finding min/max values.
+ */
+
 
 #include "array.h"
 
@@ -13,23 +17,24 @@ void swap (int *a, int *b)
     *b = temp;
 }
 
-void printArray (int arr[], int size)
+void array_print (int *arr, int size)
 {
     for (int i = 0; i < size; i++)
     {
-        printf("%d\n", arr[i]);
+        printf("%d. %d\n", (i+1), arr[i]);
     }
 }
 
-void reverseArray (int arr[], int size)
+void array_reverse (int *arr, int size)
 {
+    // Swap elements from both ends towards the center
     for (int i = 0; i < size/2; i++)
     {
         swap(&arr[i], &arr[size - 1 - i]);
     }    
 }
 
-int findMax (int arr[], int size)
+int array_find_max (int *arr, int size)
 {
     int max = arr[0];
     for (int i = 1; i < size; i++)
@@ -43,7 +48,7 @@ int findMax (int arr[], int size)
     return max;
 }
 
-int findMin (int arr[], int size)
+int array_find_min (int *arr, int size)
 {
     int min = arr[0];
     for (int i = 1; i < size; i++)
@@ -57,8 +62,9 @@ int findMin (int arr[], int size)
     return min;
 }
 
-void increaseArray (int arr[], int size)
+int array_increase (int *arr, int size)
 {
+    int retVal = STATUS_NOT_OK;
     for (int i = 0; i < size; i++)
     {
         for (int j = i + 1; j < size; j++)
@@ -69,15 +75,18 @@ void increaseArray (int arr[], int size)
             }
         }
     }
+
+    retVal = STATUS_OK;
+    return retVal;
 }
 
-void decreaseArray (int arr[], int size)
+void array_decrease (int *arr, int size)
 {
-    increaseArray (arr, size);
-    reverseArray (arr, size);
+    array_increase (arr, size);
+    array_reverse (arr, size);
 }
 
-int binarySearch (int element, int *arr, int size)
+int array_binary_search (int element, int *arr, int size)
 {
     int mid;
     int low = 0;
@@ -103,40 +112,56 @@ int binarySearch (int element, int *arr, int size)
     return -1;
 }
 
+int array_set (int index, int value, int *arr, int size)
+{
+    int retVal = STATUS_NOT_OK;
+
+    if (arr == NULL || index < 0 || index >= size)
+    {
+        return STATUS_NOT_OK;
+    }
+
+    arr[index] = value;
+
+    retVal = STATUS_OK;
+    return retVal;
+}
+
 // for testing
 int main ()
 {
     int arrSize = 10;
     int arr[10] = {7, 2, 2, 1, 4, 50, 20, 33, 40, 16};
 
-    // // test swap
-    // printArray(arr, arrSize);
-    // swap(&arr[0], &arr[1]);
-    // printf("\n");
-    // printArray(arr, arrSize);
-    // swap(&arr[0], &arr[1]);
-    // printf("------------------\n");
+    // test reverse
+    printf("Test reverse\n");
+    array_print(arr, arrSize);
+    array_reverse(arr, arrSize);
+    printf("\n");
+    array_print(arr, arrSize);
+    printf("------------------\n");
 
-    // // test reverse
-    // printArray(arr, arrSize);
-    // reverseArray(arr, arrSize);
-    // printf("\n");
-    // printArray(arr, arrSize);
-    // printf("------------------\n");
-
-    // // test sort
-    // increaseArray (arr, arrSize);
-    // printArray(arr, arrSize);
-    // printf("------------------\n");
-    // decreaseArray (arr, arrSize);
-    // printArray (arr, arrSize);
-    // printf("------------------\n");
+    // test sort
+    printf("Test sort\n");
+    array_increase (arr, arrSize);
+    array_print(arr, arrSize);
+    printf("------------------\n");
+    array_decrease (arr, arrSize);
+    array_print (arr, arrSize);
+    printf("------------------\n");
 
     // test search
+    printf("Test search\n");
     int index;
-    increaseArray (arr, arrSize);
-    index = binarySearch(50, arr, arrSize);
-    printf("%d\n", (index + 1));
+    int testVal = 50;
+    array_increase (arr, arrSize);
+    array_print(arr, arrSize);
+    
+    index = array_binary_search(testVal, arr, arrSize);
+    printf("Index of %d is: %d\n", testVal, (index + 1));
+    printf("------------------\n");
+
+    array_binary_search(50,arr,arrSize);
     
     return 0;
 }
