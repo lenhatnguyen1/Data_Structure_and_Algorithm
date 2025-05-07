@@ -57,27 +57,66 @@ int findMin (int arr[], int size)
     return min;
 }
 
+int binarySearch (int element, int *arr, int size)
+{
+    int mid;
+    int low = 0;
+    int high = size - 1;
+    while (low <= high)
+    {
+        mid = low + (high - low)/2;
+
+        if (element == arr[mid])
+        {
+            return mid;
+        }
+        else if (element > arr[mid])
+        {
+            low = mid + 1;
+        }
+        else
+        {
+            high = mid - 1;
+        }
+    }
+
+    return -1;
+}
 
 // for testing
 int main ()
 {
     int arrSize = 10;
-    int arr[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    int arr[10] = {7, 2, 2, 1, 4, 50, 20, 33, 40, 16};
 
-    // test swap
-    printArray(arr, arrSize);
-    swap(&arr[0], &arr[1]);
-    printf("\n");
-    printArray(arr, arrSize);
-    swap(&arr[0], &arr[1]);
-    printf("------------------\n");
+    // // test swap
+    // printArray(arr, arrSize);
+    // swap(&arr[0], &arr[1]);
+    // printf("\n");
+    // printArray(arr, arrSize);
+    // swap(&arr[0], &arr[1]);
+    // printf("------------------\n");
 
-    // test reverse
-    printArray(arr, arrSize);
-    reverseArray(arr, arrSize);
-    printf("\n");
-    printArray(arr, arrSize);
-    printf("------------------\n");
+    // // test reverse
+    // printArray(arr, arrSize);
+    // reverseArray(arr, arrSize);
+    // printf("\n");
+    // printArray(arr, arrSize);
+    // printf("------------------\n");
 
+    // // test sort
+    // increaseArray (arr, arrSize);
+    // printArray(arr, arrSize);
+    // printf("------------------\n");
+    // decreaseArray (arr, arrSize);
+    // printArray (arr, arrSize);
+    // printf("------------------\n");
+
+    // test search
+    int index;
+    increaseArray (arr, arrSize);
+    index = binarySearch(50, arr, arrSize);
+    printf("%d\n", (index + 1));
+    
     return 0;
 }
