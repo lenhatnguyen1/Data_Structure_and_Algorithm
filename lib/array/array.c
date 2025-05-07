@@ -57,6 +57,26 @@ int findMin (int arr[], int size)
     return min;
 }
 
+void increaseArray (int arr[], int size)
+{
+    for (int i = 0; i < size; i++)
+    {
+        for (int j = i + 1; j < size; j++)
+        {
+            if (arr[i] > arr[j])
+            {
+                swap(&arr[i], &arr[j]);
+            }
+        }
+    }
+}
+
+void decreaseArray (int arr[], int size)
+{
+    increaseArray (arr, size);
+    reverseArray (arr, size);
+}
+
 int binarySearch (int element, int *arr, int size)
 {
     int mid;
