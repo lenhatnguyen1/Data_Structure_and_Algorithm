@@ -62,7 +62,7 @@ int array_find_min (int *arr, int size);
  * @param arr Pointer to the array.
  * @param size Number of elements in the array.
  */
-void array_increase (int *arr, int size);
+int array_increase (int *arr, int size);
 
 /**
  * @brief Sorts the array in descending order by sorting ascending first, then reversing.
