@@ -86,6 +86,15 @@ void array_insert (int *arr, int size);
 
 void array_remove (int *arr, int size);
 
+/**
+ * @brief Performs binary search on a sorted array to find the given element.
+ * 
+ * @param index The index of element need to set.
+ * @param value The value need to set.
+ * @param arr Pointer to array.
+ * @param size Number of elements in the array.
+ * @return int 0 is success, other is fail.
+ */
 int array_set (int index, int value, int *arr, int size);
 
 #endif
