@@ -9,7 +9,8 @@
 
 #include "array.h"
 
-void swap (int *a, int *b)
+// private
+PRIVATE void swap (int *a, int *b)
 {
     int temp;
     temp = *a;
@@ -17,7 +18,8 @@ void swap (int *a, int *b)
     *b = temp;
 }
 
-void array_print (int *arr, int size)
+// public
+PUBLIC void array_print (int *arr, int size)
 {
     for (int i = 0; i < size; i++)
     {
@@ -25,7 +27,7 @@ void array_print (int *arr, int size)
     }
 }
 
-void array_reverse (int *arr, int size)
+PUBLIC void array_reverse (int *arr, int size)
 {
     // Swap elements from both ends towards the center
     for (int i = 0; i < size/2; i++)
@@ -34,7 +36,7 @@ void array_reverse (int *arr, int size)
     }    
 }
 
-int array_find_max (int *arr, int size)
+PUBLIC int array_find_max (int *arr, int size)
 {
     int max = arr[0];
     for (int i = 1; i < size; i++)
@@ -48,7 +50,7 @@ int array_find_max (int *arr, int size)
     return max;
 }
 
-int array_find_min (int *arr, int size)
+PUBLIC int array_find_min (int *arr, int size)
 {
     int min = arr[0];
     for (int i = 1; i < size; i++)
@@ -62,7 +64,7 @@ int array_find_min (int *arr, int size)
     return min;
 }
 
-int array_increase (int *arr, int size)
+PUBLIC int array_increase (int *arr, int size)
 {
     int retVal = STATUS_NOT_OK;
     for (int i = 0; i < size; i++)
@@ -80,13 +82,13 @@ int array_increase (int *arr, int size)
     return retVal;
 }
 
-void array_decrease (int *arr, int size)
+PUBLIC void array_decrease (int *arr, int size)
 {
     array_increase (arr, size);
     array_reverse (arr, size);
 }
 
-int array_binary_search (int element, int *arr, int size)
+PUBLIC int array_binary_search (int element, int *arr, int size)
 {
     int mid;
     int low = 0;
@@ -112,14 +114,14 @@ int array_binary_search (int element, int *arr, int size)
     return -1;
 }
 
-int array_set (int index, int value, int *arr, int size)
+PUBLIC int array_set (int index, int value, int *arr, int size)
 {
     int retVal = STATUS_NOT_OK;
 
     if (arr == NULL || index < 0 || index >= size)
     {
         return STATUS_NOT_OK;
-    }
+    }    
 
     arr[index] = value;
 
@@ -133,35 +135,38 @@ int main ()
     int arrSize = 10;
     int arr[10] = {7, 2, 2, 1, 4, 50, 20, 33, 40, 16};
 
-    // test reverse
-    printf("Test reverse\n");
-    array_print(arr, arrSize);
-    array_reverse(arr, arrSize);
-    printf("\n");
-    array_print(arr, arrSize);
-    printf("------------------\n");
+    // // test reverse
+    // printf("Test reverse\n");
+    // array_print(arr, arrSize);
+    // array_reverse(arr, arrSize);
+    // printf("\n");
+    // array_print(arr, arrSize);
+    // printf("------------------\n");
 
-    // test sort
-    printf("Test sort\n");
-    array_increase (arr, arrSize);
-    array_print(arr, arrSize);
-    printf("------------------\n");
-    array_decrease (arr, arrSize);
-    array_print (arr, arrSize);
-    printf("------------------\n");
+    // // test sort
+    // printf("Test sort\n");
+    // array_increase (arr, arrSize);
+    // array_print(arr, arrSize);
+    // printf("------------------\n");
+    // array_decrease (arr, arrSize);
+    // array_print (arr, arrSize);
+    // printf("------------------\n");
 
-    // test search
-    printf("Test search\n");
-    int index;
-    int testVal = 50;
-    array_increase (arr, arrSize);
-    array_print(arr, arrSize);
+    // // test search
+    // printf("Test search\n");
+    // int index;
+    // int testVal = 50;
+    // array_increase (arr, arrSize);
+    // array_print(arr, arrSize);
     
-    index = array_binary_search(testVal, arr, arrSize);
-    printf("Index of %d is: %d\n", testVal, (index + 1));
-    printf("------------------\n");
+    // index = array_binary_search(testVal, arr, arrSize);
+    // printf("Index of %d is: %d\n", testVal, (index + 1));
+    // printf("------------------\n");
 
-    array_binary_search(50,arr,arrSize);
+    // array_binary_search(50,arr,arrSize);
+
+    array_set(0, 1000, arr, arrSize);
+    array_print(arr, arrSize);
     
     return 0;
 }
