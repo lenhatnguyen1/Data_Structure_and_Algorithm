@@ -3,7 +3,9 @@
     "array.h": "c",
     "array": "c",
     "utility": "c",
-    "stdio.h": "c"
+    "stdio.h": "c",
+    "linked_list.h": "c",
+    "xutility": "c"
   },
   "C_Cpp_Runner.cCompilerPath": "gcc",
   "C_Cpp_Runner.cppCompilerPath": "g++",
