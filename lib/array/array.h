@@ -94,7 +94,7 @@ void array_remove (int *arr, int size);
  * @param arr Pointer to array.
  * @param size Number of elements in the array.
  * @return int 0 is success, other is fail.
- */
+ */ 
 int array_set (int index, int value, int *arr, int size);
 
 #endif

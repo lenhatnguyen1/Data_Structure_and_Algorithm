@@ -141,9 +141,9 @@ int main ()
     array_print(arr, arrSize);
     printf("------------------\n");
 
-    // test sort
+    // test sort                                                                                
     printf("Test sort\n");
-    array_increase (arr, arrSize);
+    array_increase (arr, arrSize);                  
     array_print(arr, arrSize);
     printf("------------------\n");
     array_decrease (arr, arrSize);
