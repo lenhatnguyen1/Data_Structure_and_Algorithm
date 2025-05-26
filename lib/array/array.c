@@ -129,7 +129,6 @@ PUBLIC int array_set (int index, int value, int *arr, int size)
     return retVal;
 }
 
-<<<<<<< HEAD
 // for testing
 int main ()
 {
@@ -168,5 +167,3 @@ int main ()
     
     return 0;
 }
-=======
->>>>>>> d3168e670198441e044db8fc1c743424ab326743
